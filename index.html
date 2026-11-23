@@ -3,193 +3,283 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kit Prático: Time de 4 Agentes OpenBot & Fábrica Local de Reels — @jeanbraga.ia</title>
-  <meta name="description" content="Guia técnico e templates sanitizados para operar 4 agentes de IA e esteira de Reels localmente no seu computador, sem custos de nuvem.">
+  <title>Kit OpenBot: Time de 4 Agentes & Fábrica Local de Reels — @jeanbraga.ia</title>
+  <meta name="description" content="Guia técnico e templates sanitizados para operar 4 agentes de IA e esteira local de Reels no seu computador, com privacidade e sem mensalidades.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header Minimalista -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <span class="brand-handle">@jeanbraga.ia</span>
-        <span class="brand-sep">/</span>
-        <span class="brand-tag">openbot-kit</span>
+  <!-- Header Minimalista (1 linha limpa) -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="/" class="brand-link">jeanbraga<span class="brand-dim">.ia</span></a>
       </div>
-      <div class="header-status">
-        <span class="status-indicator"></span>
-        <span class="status-label">100% local · controle humano</span>
+      <div class="nav-right">
+        <a href="https://instagram.com/jeanbraga.ia" target="_blank" rel="noopener noreferrer" class="social-link">
+          Instagram ↗
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
   <main>
+    <!-- Hero Assimétrico: Copy + Form na Esquerda, Preview Interativo na Direita -->
     <section class="hero-section">
-      <div class="container hero-inner">
-        <div class="eyebrow">BUILD IN PUBLIC · GUIA TÉCNICO OFICIAL</div>
-        <h1 class="hero-headline">
-          Quatro agentes de IA rodando no seu computador antigo, sem mensalidade de bot em nuvem.
-        </h1>
-        <p class="hero-description">
-          Templates sanitizados dos agentes (Pessoal, Finanças, Engenharia e Conteúdo) e a arquitetura completa da fábrica local de Reels em Python e FFmpeg. Seus dados não saem da sua máquina.
-        </p>
+      <div class="hero-container">
+        <div class="hero-grid">
+          <!-- Coluna Esquerda: Form & Copy -->
+          <div class="hero-content">
+            <div class="mono-eyebrow">Kit OpenBot · Guia Técnico</div>
+            <h1 class="hero-title">
+              Quatro agentes de IA rodando no seu PC. Sem mensalidade de bot na nuvem.
+            </h1>
+            <p class="hero-subtitle">
+              Templates prontos de AGENTS.md e o código exato da fábrica local de Reels em Python e FFmpeg. Seus dados ficam no seu disco, com aprovação humana obrigatória.
+            </p>
 
-        <!-- Form de Captura Direta -->
-        <div class="form-container">
-          <form name="kit-openbot-leads" method="POST" data-netlify="true" action="/obrigado.html" id="leadForm" class="capture-form">
-            <input type="hidden" name="form-name" value="kit-openbot-leads" />
-            <input type="hidden" name="contact_type" id="contact_type" value="unknown" />
-            <input type="hidden" name="contact_normalized" id="contact_normalized" value="" />
-            <input type="hidden" name="campaign_slug" id="campaign_slug" value="reel_2026_11_23_openbot" />
-            <input type="hidden" name="keyword" id="keyword" value="OPENBOT" />
-            <input type="hidden" name="utm_source" id="utm_source" value="" />
-            <input type="hidden" name="utm_medium" id="utm_medium" value="" />
-            <input type="hidden" name="utm_campaign" id="utm_campaign" value="" />
-            <input type="hidden" name="utm_content" id="utm_content" value="" />
+            <div class="form-card">
+              <form 
+                name="kit-openbot-leads" 
+                method="POST" 
+                data-netlify="true" 
+                netlify-honeypot="bot-field"
+                action="/obrigado.html" 
+                id="leadForm" 
+                class="capture-form"
+              >
+                <!-- Netlify Bot & Form Name -->
+                <input type="hidden" name="form-name" value="kit-openbot-leads" />
+                <p class="hidden-field"><label>Não preencha: <input name="bot-field" /></label></p>
 
-            <div class="input-row">
-              <div class="input-wrapper">
-                <input 
-                  type="text" 
-                  id="contact_input" 
-                  name="contact_raw" 
-                  class="contact-input" 
-                  placeholder="Seu WhatsApp ou E-mail preferido" 
-                  required 
-                  autocomplete="off"
-                />
-                <span id="contact_badge" class="input-badge">Aguardando</span>
-              </div>
-              <button type="submit" id="submitBtn" class="primary-cta" disabled>
-                Baixar Kit em PDF
-              </button>
-            </div>
-            <div class="form-footer">
-              <span id="validation_msg" class="feedback-msg"></span>
-              <span class="privacy-text">Acesso imediato ao PDF de 7 páginas. Sem spam.</span>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
+                <!-- Hidden Tracking Fields -->
+                <input type="hidden" name="contact_type" id="contact_type" value="unknown" />
+                <input type="hidden" name="contact_normalized" id="contact_normalized" value="" />
+                <input type="hidden" name="campaign_slug" id="campaign_slug" value="reel_2026_11_23_openbot" />
+                <input type="hidden" name="keyword" id="keyword" value="OPENBOT" />
+                <input type="hidden" name="utm_source" id="utm_source" value="" />
+                <input type="hidden" name="utm_medium" id="utm_medium" value="" />
+                <input type="hidden" name="utm_campaign" id="utm_campaign" value="" />
+                <input type="hidden" name="utm_content" id="utm_content" value="" />
+                <input type="hidden" name="page_url" id="page_url" value="" />
 
-    <!-- Show, Don't Tell: Artifact Preview Interativo -->
-    <section class="preview-section">
-      <div class="container">
-        <div class="code-window">
-          <div class="window-header">
-            <div class="window-dots">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-            </div>
-            <div class="window-tabs" id="codeTabs">
-              <button class="tab-btn active" data-tab="agents">AGENTS.md</button>
-              <button class="tab-btn" data-tab="reel">render_reel.py</button>
-              <button class="tab-btn" data-tab="pipeline">pipeline.json</button>
-            </div>
-            <div class="window-actions">
-              <span class="file-tag">Sanitizado · fake_xxx</span>
+                <!-- Campo 1: Nome -->
+                <div class="field-block">
+                  <label for="lead_name" class="field-label">Seu nome</label>
+                  <input 
+                    type="text" 
+                    id="lead_name" 
+                    name="name" 
+                    class="field-input" 
+                    placeholder="Como prefere ser chamado" 
+                    required 
+                    autocomplete="name"
+                  />
+                </div>
+
+                <!-- Campo 2 Inteligente: WhatsApp ou E-mail -->
+                <div class="field-block">
+                  <div class="label-row">
+                    <label for="contact_input" class="field-label">WhatsApp com DDD ou e-mail</label>
+                    <span id="contact_badge" class="type-badge">Aguardando</span>
+                  </div>
+                  <input 
+                    type="text" 
+                    id="contact_input" 
+                    name="contact_raw" 
+                    class="field-input" 
+                    placeholder="(11) 98765-4321 ou seu@email.com" 
+                    required 
+                    autocomplete="off"
+                  />
+                  <div id="validation_msg" class="field-feedback"></div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn" disabled>
+                  Receber o PDF gratuito
+                </button>
+
+                <p class="legal-notice">
+                  Acesso instantâneo de 7 páginas. Sem spam, apenas o guia técnico.
+                </p>
+              </form>
             </div>
           </div>
-          <div class="window-body">
-            <pre id="tab-agents" class="code-content active"><code><span class="c-comment"># Workspace /var/lib/openbot/OpenBot/Shared/</span>
-<span class="c-keyword">Agente Pessoal:</span>    Agenda matinal, prioridades diárias e triagem de tarefas.
-<span class="c-keyword">Agente Finanças:</span>   Auditoria estrita de extratos, deduplicação 120s e alertas.
-<span class="c-keyword">Agente Dev:</span>        Scripts locais, testes unitários e automações Git.
-<span class="c-keyword">Agente Mídia:</span>      Roteiro em 7 atos e renderização de vídeo vertical.
 
-<span class="c-comment"># Regra inegociável de segurança:</span>
-<span class="c-string">HUMAN_IN_THE_LOOP:</span> Nenhuma ação pública ou transação ocorre sem o seu OK explícito.
-<span class="c-string">CREDENTIALS:</span>      Apenas variáveis de ambiente locais (<span class="c-var">fake_api_token_xxx</span>).</code></pre>
+          <!-- Coluna Direita: Interactive Window (Resend / Raycast style) -->
+          <div class="hero-preview">
+            <div class="terminal-window">
+              <div class="terminal-bar">
+                <div class="terminal-dots">
+                  <span class="t-dot"></span>
+                  <span class="t-dot"></span>
+                  <span class="t-dot"></span>
+                </div>
+                <div class="terminal-tabs">
+                  <button class="t-tab active" data-tab="pessoal">agents/pessoal.md</button>
+                  <button class="t-tab" data-tab="roteiro">roteiro_7_atos.json</button>
+                  <button class="t-tab" data-tab="esteira">esteira.txt</button>
+                </div>
+                <div class="terminal-pill">Sanitizado</div>
+              </div>
 
-            <pre id="tab-reel" class="code-content"><code><span class="c-comment"># Pipeline da Fábrica Local de Reels (Pillow + FFmpeg + Edge-TTS)</span>
-<span class="c-keyword">def</span> <span class="c-func">render_reel</span>(script_json, resolution=(<span class="c-num">1080</span>, <span class="c-num">1920</span>)):
-    acts = script_json[<span class="c-string">"acts"</span>]  <span class="c-comment"># Roteiro em 7 atos estruturados</span>
-    <span class="c-comment"># 1. Síntese neural pt-BR sincronizada</span>
-    audio_tracks = synthesize_voice(acts, voice=<span class="c-string">"pt-BR-AntonioNeural"</span>)
-    <span class="c-comment"># 2. Renderização rápida do canvas 720p</span>
-    raw_frames = render_canvas_frames(acts, size=(<span class="c-num">720</span>, <span class="c-num">1280</span>))
-    <span class="c-comment"># 3. Interpolação Lanczos para nitidez mobile máxima</span>
-    upscaled = lanczos_upscale(raw_frames, target=resolution)
-    <span class="c-comment"># 4. Folha de contato para validação humana em 1 clique</span>
-    generate_contact_sheet(upscaled, output=<span class="c-string">"contact_sheet.jpg"</span>)
-    <span class="c-keyword">return</span> compile_mp4(upscaled, audio_tracks)</code></pre>
+              <div class="terminal-content">
+                <!-- Aba 1: pessoal.md -->
+                <pre id="code-pessoal" class="code-pane active"><code><span class="k-comment"># Workspace /var/lib/openbot/OpenBot/Shared/pessoal</span>
+<span class="k-key">Nome:</span>        Agente Pessoal
+<span class="k-key">Remit:</span>       Triagem matinal, agenda diária e síntese de prioridades.
+<span class="k-key">Diretrizes:</span>  
+  - Respostas curtas e acionáveis, sem enrolação.
+  - Selecionar as 3 tarefas críticas de cada início de dia.
+  - Nunca agendar ou enviar mensagens a terceiros sem seu OK explícito.
 
-            <pre id="tab-pipeline" class="code-content"><code>{
-  <span class="c-string">"id"</span>: <span class="c-string">"2026-11-23-time-4-agentes-openbot"</span>,
-  <span class="c-string">"brand"</span>: <span class="c-string">"@jeanbraga.ia"</span>,
-  <span class="c-string">"keyword"</span>: <span class="c-string">"OPENBOT"</span>,
-  <span class="c-string">"acts_count"</span>: <span class="c-num">7</span>,
-  <span class="c-string">"output_format"</span>: <span class="c-string">"1080x1920 H.264"</span>,
-  <span class="c-string">"pipeline"</span>: [
-    <span class="c-string">"01_roteiro_7_atos"</span>,
-    <span class="c-string">"02_voz_neural_local"</span>,
-    <span class="c-string">"03_canvas_pillow"</span>,
-    <span class="c-string">"04_upscale_lanczos"</span>,
-    <span class="c-string">"05_contact_sheet_aprovacao"</span>
+<span class="k-key">Config:</span>
+  WORKSPACE:  ~/openbot-workspace/pessoal
+  API_KEY:    ${PERSONAL_KEY:-<span class="k-accent">fake_api_token_xxx</span>}</code></pre>
+
+                <!-- Aba 2: roteiro_7_atos.json -->
+                <pre id="code-roteiro" class="code-pane"><code>{
+  <span class="k-str">"id"</span>: <span class="k-str">"2026-11-23-time-4-agentes-openbot"</span>,
+  <span class="k-str">"brand"</span>: <span class="k-str">"@jeanbraga.ia"</span>,
+  <span class="k-str">"keyword"</span>: <span class="k-str">"OPENBOT"</span>,
+  <span class="k-str">"acts"</span>: [
+    { <span class="k-str">"act"</span>: 1, <span class="k-str">"hook"</span>: <span class="k-str">"4 IAs no meu PC antigo sem bot de $30/mês"</span> },
+    { <span class="k-str">"act"</span>: 2, <span class="k-str">"roles"</span>: [<span class="k-str">"Pessoal"</span>, <span class="k-str">"Finanças"</span>, <span class="k-str">"Dev"</span>, <span class="k-str">"Conteúdo"</span>] },
+    { <span class="k-str">"act"</span>: 3, <span class="k-str">"privacy"</span>: <span class="k-str">"Seus dados no seu disco, sem lock-in"</span> },
+    { <span class="k-str">"act"</span>: 4, <span class="k-str">"control"</span>: <span class="k-str">"Rotina autônoma + seu OK antes de publicar"</span> },
+    { <span class="k-str">"act"</span>: 5, <span class="k-str">"proof"</span>: <span class="k-str">"Este próprio vídeo saiu dessa esteira local"</span> },
+    { <span class="k-str">"act"</span>: 6, <span class="k-str">"setup"</span>: <span class="k-str">"FFmpeg + Python + Pillow em 720p/1080p"</span> },
+    { <span class="k-str">"act"</span>: 7, <span class="k-str">"cta"</span>: <span class="k-str">"Comenta OPENBOT para o kit completo"</span> }
   ]
 }</code></pre>
+
+                <!-- Aba 3: esteira.txt -->
+                <pre id="code-esteira" class="code-pane"><code><span class="k-comment">ESTEIRA DE PRODUÇÃO LOCAL (HUMAN-IN-THE-LOOP)</span>
+
+[1. Cron / Evento]  ──>  Dispara rotina no OpenBot local
+                             │
+[2. Agente Especialista]  ──>  Executa tarefa em sandbox privada
+                             │
+[3. Artefato Compilado]   ──>  Gera vídeo MP4 + folha de contato (contact sheet)
+                             │
+[4. Interface de Revisão] ──>  Apresenta resultado no chat local
+                             │
+[5. Seu OK Obrigatório]   ──>  Apenas você autoriza envio ou publicação</code></pre>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bento Grid Asimétrico Monocromático -->
+    <!-- Bento Grid Monocromático Asimétrico -->
     <section class="bento-section">
-      <div class="container">
-        <div class="section-title-wrap">
-          <h2 class="section-headline">O que está empacotado no kit</h2>
-          <p class="section-sub">Tudo estruturado para você copiar, configurar e rodar em hardware próprio.</p>
+      <div class="bento-container">
+        <div class="section-heading">
+          <div class="mono-eyebrow">Arquitetura Completa</div>
+          <h2 class="section-title">O que está empacotado no kit</h2>
+          <p class="section-desc">Instruções, templates e scripts testados na prática para você copiar e executar.</p>
         </div>
 
         <div class="bento-grid">
-          <div class="bento-card bento-hero">
-            <div class="card-meta">TEMPLATE 01 A 04</div>
-            <h3>Os 4 Agentes Prontos</h3>
-            <p>Arquivos AGENTS.md com escopos delimitados, instruções de sanitização, isolamento de workspaces e prompts que impedem alucinações em produção.</p>
-            <div class="card-tags">
-              <span>Pessoal</span>
-              <span>Finanças</span>
-              <span>Engenharia</span>
-              <span>Conteúdo</span>
+          <!-- Card Hero: 4 Agentes -->
+          <div class="bento-card bento-span-2">
+            <span class="card-num">01 / TEMPLATES</span>
+            <h3>Os 4 Agentes de IA</h3>
+            <p>Configurações testadas com limites claros de contexto, permissões de leitura e templates prontos para o OpenBot.</p>
+            <div class="agent-roles-list">
+              <div class="role-item">
+                <span class="role-name">Pessoal</span>
+                <span class="role-desc">Triagem de agenda e síntese de prioridades matinais.</span>
+              </div>
+              <div class="role-item">
+                <span class="role-name">Finanças</span>
+                <span class="role-desc">Acompanhamento e organização financeira diária sem escrita.</span>
+              </div>
+              <div class="role-item">
+                <span class="role-name">Engenharia</span>
+                <span class="role-desc">Automações Python, rotinas de git e testes unitários.</span>
+              </div>
+              <div class="role-item">
+                <span class="role-name">Conteúdo</span>
+                <span class="role-desc">Pesquisa, roteirização técnica e acionamento da esteira de mídia.</span>
+              </div>
             </div>
           </div>
 
+          <!-- Card: Fábrica Local de Reels -->
           <div class="bento-card">
-            <div class="card-meta">PIPELINE LOCAL</div>
-            <h3>Fábrica de Reels</h3>
-            <p>O script exato que gerou este vídeo: síntese neural pt-BR, canvas dinâmico Pillow, upscale Lanczos para 1080p e geração de contact sheet.</p>
+            <span class="card-num">02 / ESTEIRA</span>
+            <h3>Fábrica Local de Reels</h3>
+            <p>O pipeline completo em Python que compila vídeos verticais a 30 FPS: renderização em canvas 720p, upscale Lanczos para 1080p, áudio neural pt-BR e contact sheet para aprovação rápida.</p>
           </div>
 
+          <!-- Card: Setup Modesto -->
           <div class="bento-card">
-            <div class="card-meta">INFRAESTRUTURA</div>
-            <h3>Setup em PC Modesto</h3>
-            <p>Instalação do daemon OpenBot em Linux, macOS ou WSL2 sem exigir placa de vídeo dedicada. Consumo leve de CPU e memória.</p>
+            <span class="card-num">03 / HARDWARE</span>
+            <h3>Zero Exigência de GPU</h3>
+            <p>Roda em qualquer máquina comum rodando Linux, macOS ou WSL2 com 4GB a 8GB de RAM. Sem necessidade de servidores dedicados.</p>
           </div>
 
-          <div class="bento-card bento-wide">
-            <div class="card-meta">SEGURANÇA & PRIVACIDADE</div>
+          <!-- Card Wide: Blindagem de Credenciais -->
+          <div class="bento-card bento-span-2">
+            <span class="card-num">04 / PRIVACIDADE</span>
             <h3>Checklist de Blindagem de Credenciais</h3>
-            <p>Guia prático para garantir que tokens de banco ou APIs externas nunca sejam commitados no repositório. Uso estrito de variáveis de ambiente e placeholders padronizados.</p>
+            <p>Padrão obrigatório para isolar arquivos .env, proteger segredos contra vazamentos acidentais em commits e trabalhar com dados estritamente sanitizados sob placeholders fake_xxx.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparativo Objetivo (2 Colunas com Divisória Fina) -->
+    <section class="compare-section">
+      <div class="bento-container">
+        <div class="section-heading">
+          <div class="mono-eyebrow">Comparativo Técnico</div>
+          <h2 class="section-title">Nuvem fechada vs. operação própria</h2>
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-box">
+            <div class="compare-header">
+              <span class="compare-tag dim">Bots Fechados na Nuvem</span>
+              <h4>US$ 30 a US$ 100/mês</h4>
+            </div>
+            <ul class="compare-list">
+              <li>Histórico e dados sensíveis retidos em servidores de terceiros.</li>
+              <li>Mensalidades recorrentes que aumentam conforme o uso.</li>
+              <li>Plataformas proprietárias com alto lock-in de fornecedor.</li>
+              <li>Execuções automáticas sem garantia de validação visual prévia.</li>
+            </ul>
+          </div>
+
+          <div class="compare-box highlight">
+            <div class="compare-header">
+              <span class="compare-tag active">OpenBot Local</span>
+              <h4>Custo de Nuvem: R$ 0</h4>
+            </div>
+            <ul class="compare-list">
+              <li>Seus arquivos permanecem exclusivamente no seu computador.</li>
+              <li>Controle total do hardware, dos scripts e do código-fonte.</li>
+              <li>Você escolhe o modelo de IA (local gratuito ou APIs pontuais).</li>
+              <li>Human-in-the-loop mandatória: o agente prepara, você autoriza.</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-left">
+  <!-- Rodapé Sóbrio -->
+  <footer class="page-footer">
+    <div class="bento-container footer-flex">
+      <div class="footer-meta">
         <strong>@jeanbraga.ia</strong> · Build In Public
       </div>
-      <div class="footer-right">
-        <span>Kit Prático OpenBot · Licença MIT para templates</span>
+      <div class="footer-actions">
+        <a href="#leadForm" class="back-top-link">Voltar ao topo ↑</a>
       </div>
     </div>
   </footer>

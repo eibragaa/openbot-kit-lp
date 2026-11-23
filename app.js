@@ -1,43 +1,49 @@
-// app.js — Validação Inteligente, Abas Interativas e Rastreamento de Leads
+// app.js — Interações, Abas e Validação do Kit OpenBot (@jeanbraga.ia)
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Controle de Abas do Code Window
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const codeContents = document.querySelectorAll(".code-content");
+  // 1. Abas da Janela de Preview
+  const tabButtons = document.querySelectorAll(".t-tab");
+  const codePanes = document.querySelectorAll(".code-pane");
 
   tabButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      const targetTab = btn.getAttribute("data-tab");
+      const target = btn.getAttribute("data-tab");
       tabButtons.forEach(b => b.classList.remove("active"));
-      codeContents.forEach(c => c.classList.remove("active"));
+      codePanes.forEach(p => p.classList.remove("active"));
 
       btn.classList.add("active");
-      const activeContent = document.getElementById("tab-" + targetTab);
-      if (activeContent) {
-        activeContent.classList.add("active");
+      const targetPane = document.getElementById("code-" + target);
+      if (targetPane) {
+        targetPane.classList.add("active");
       }
     });
   });
 
-  // Campos do Formulário
+  // 2. Formulário e Campos
+  const nameInput = document.getElementById("lead_name");
   const contactInput = document.getElementById("contact_input");
   const contactBadge = document.getElementById("contact_badge");
   const validationMsg = document.getElementById("validation_msg");
   const submitBtn = document.getElementById("submitBtn");
   const hiddenType = document.getElementById("contact_type");
   const hiddenNormalized = document.getElementById("contact_normalized");
+  const hiddenPageUrl = document.getElementById("page_url");
 
-  // Captura UTMs da URL
+  if (hiddenPageUrl) {
+    hiddenPageUrl.value = window.location.href;
+  }
+
+  // Captura parâmetros UTM
   const params = new URLSearchParams(window.location.search);
-  const utmFields = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
-  utmFields.forEach(field => {
-    const el = document.getElementById(field);
-    if (el && params.has(field)) {
-      el.value = params.get(field);
+  const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_content"];
+  utmKeys.forEach(k => {
+    const el = document.getElementById(k);
+    if (el && params.has(k)) {
+      el.value = params.get(k);
     }
   });
 
-  // DDDs oficiais do Brasil
+  // DDDs ativos no Brasil
   const validDDDs = new Set([
     "11","12","13","14","15","16","17","18","19",
     "21","22","24","27","28",
@@ -111,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return {
           formatted,
           valid: false,
-          error: "Celular de 11 dígitos deve iniciar com 9 após DDD"
+          error: "Celular de 11 dígitos deve iniciar com 9 após o DDD"
         };
       }
     }
@@ -123,65 +129,82 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  contactInput.addEventListener("input", () => {
-    const rawVal = contactInput.value;
+  function checkFormValidity() {
+    const nameValid = nameInput.value.trim().length >= 2;
+    const rawContact = contactInput.value.trim();
 
-    if (!rawVal.trim()) {
+    if (!rawContact) {
       contactBadge.textContent = "Aguardando";
-      contactBadge.className = "input-badge";
+      contactBadge.className = "type-badge";
       validationMsg.textContent = "";
-      validationMsg.className = "feedback-msg";
-      contactInput.className = "contact-input";
+      validationMsg.className = "field-feedback";
+      contactInput.className = "field-input";
       submitBtn.disabled = true;
       hiddenType.value = "unknown";
       hiddenNormalized.value = "";
       return;
     }
 
-    if (isEmailCandidate(rawVal)) {
+    if (isEmailCandidate(rawContact)) {
       contactBadge.textContent = "E-mail";
-      contactBadge.className = "input-badge email";
-      const res = validateEmail(rawVal);
+      contactBadge.className = "type-badge email";
+      const res = validateEmail(rawContact);
 
       if (res.valid) {
         validationMsg.textContent = "E-mail pronto";
-        validationMsg.className = "feedback-msg success";
-        contactInput.className = "contact-input valid-email";
-        submitBtn.disabled = false;
+        validationMsg.className = "field-feedback success";
+        contactInput.className = "field-input valid-field";
         hiddenType.value = "email";
         hiddenNormalized.value = res.normalized;
+        submitBtn.disabled = !nameValid;
       } else {
         validationMsg.textContent = res.error;
-        validationMsg.className = "feedback-msg error";
-        contactInput.className = "contact-input invalid-input";
-        submitBtn.disabled = true;
+        validationMsg.className = "field-feedback error";
+        contactInput.className = "field-input invalid-field";
         hiddenType.value = "email";
         hiddenNormalized.value = "";
+        submitBtn.disabled = true;
       }
     } else {
       contactBadge.textContent = "WhatsApp";
-      contactBadge.className = "input-badge whatsapp";
-      const res = formatAndValidatePhone(rawVal);
+      contactBadge.className = "type-badge whatsapp";
+      const res = formatAndValidatePhone(rawContact);
 
-      if (res.formatted && res.formatted !== rawVal) {
+      if (res.formatted && res.formatted !== rawContact) {
         contactInput.value = res.formatted;
       }
 
       if (res.valid) {
         validationMsg.textContent = "WhatsApp pronto";
-        validationMsg.className = "feedback-msg success";
-        contactInput.className = "contact-input valid-phone";
-        submitBtn.disabled = false;
+        validationMsg.className = "field-feedback success";
+        contactInput.className = "field-input valid-field";
         hiddenType.value = "whatsapp";
         hiddenNormalized.value = res.normalized;
+        submitBtn.disabled = !nameValid;
       } else {
         validationMsg.textContent = res.error;
-        validationMsg.className = "feedback-msg error";
-        contactInput.className = "contact-input invalid-input";
-        submitBtn.disabled = true;
+        validationMsg.className = "field-feedback error";
+        contactInput.className = "field-input invalid-field";
         hiddenType.value = "whatsapp";
         hiddenNormalized.value = "";
+        submitBtn.disabled = true;
       }
     }
-  });
+  }
+
+  contactInput.addEventListener("input", checkFormValidity);
+  nameInput.addEventListener("input", checkFormValidity);
+
+  // Guarda o nome localmente para personalizar obrigado.html
+  const leadForm = document.getElementById("leadForm");
+  if (leadForm) {
+    leadForm.addEventListener("submit", () => {
+      const name = nameInput.value.trim();
+      if (name) {
+        try {
+          localStorage.setItem("openbot_lead_name", name);
+        } catch (e) {}
+      }
+    });
+  }
 });

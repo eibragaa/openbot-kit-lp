@@ -111,6 +111,7 @@ def validate_phone(raw: str):
 
 
 def process_lead(raw_data: dict) -> dict:
+    name = str(raw_data.get("name") or "").strip()
     raw_contact = str(raw_data.get("contact_raw") or raw_data.get("contact") or "").strip()
     declared_type = str(raw_data.get("contact_type") or "").lower()
 
@@ -121,6 +122,7 @@ def process_lead(raw_data: dict) -> dict:
 
     return {
         "id": raw_data.get("id") or f"lead_{int(datetime.now(timezone.utc).timestamp()*1000)}",
+        "name": name,
         "raw_contact": raw_contact,
         "contact_type": val_res["type"],
         "contact_normalized": val_res["normalized"],
@@ -175,6 +177,7 @@ def fetch_netlify_submissions(token: str, site_id: str, form_name: str = "kit-op
                 d = item.get("data", {})
                 results.append({
                     "id": item.get("id"),
+                    "name": d.get("name"),
                     "contact_raw": d.get("contact_raw") or d.get("contact"),
                     "contact_type": d.get("contact_type"),
                     "campaign_slug": d.get("campaign_slug"),
@@ -242,6 +245,14 @@ def run_self_test():
             "input": {"contact_raw": "usuario@invalido", "contact_type": "email"},
             "expected_valid": False,
             "expected_type": "email"
+        },
+        {
+            "desc": "Lead Completo com Nome e WhatsApp",
+            "input": {"name": "Carlos Silva", "contact_raw": "(11) 98765-4321", "contact_type": "whatsapp"},
+            "expected_valid": True,
+            "expected_type": "whatsapp",
+            "expected_norm": "+5511987654321",
+            "expected_name": "Carlos Silva"
         }
     ]
 
@@ -255,8 +266,11 @@ def run_self_test():
         norm_ok = True
         if tc.get("expected_norm"):
             norm_ok = (res["contact_normalized"] == tc["expected_norm"])
+        name_ok = True
+        if tc.get("expected_name"):
+            name_ok = (res["name"] == tc["expected_name"])
 
-        if is_val == tc["expected_valid"] and type_ok and norm_ok:
+        if is_val == tc["expected_valid"] and type_ok and norm_ok and name_ok:
             print(f" [PASS] Caso {i}: {tc['desc']} -> {res['contact_normalized'] or res['validation_error']}")
             passed += 1
         else:
