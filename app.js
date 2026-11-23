@@ -1,6 +1,25 @@
-// app.js - Validação Inteligente e Rastreamento de Leads
+// app.js — Validação Inteligente, Abas Interativas e Rastreamento de Leads
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Controle de Abas do Code Window
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  const codeContents = document.querySelectorAll(".code-content");
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetTab = btn.getAttribute("data-tab");
+      tabButtons.forEach(b => b.classList.remove("active"));
+      codeContents.forEach(c => c.classList.remove("active"));
+
+      btn.classList.add("active");
+      const activeContent = document.getElementById("tab-" + targetTab);
+      if (activeContent) {
+        activeContent.classList.add("active");
+      }
+    });
+  });
+
+  // Campos do Formulário
   const contactInput = document.getElementById("contact_input");
   const contactBadge = document.getElementById("contact_badge");
   const validationMsg = document.getElementById("validation_msg");
@@ -18,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Lista de DDDs válidos no Brasil
+  // DDDs oficiais do Brasil
   const validDDDs = new Set([
     "11","12","13","14","15","16","17","18","19",
     "21","22","24","27","28",
@@ -45,20 +64,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function formatAndValidatePhone(val) {
-    // Remove tudo que não é dígito
     let digits = val.replace(/\D/g, "");
 
-    // Se começou com 55 e tem mais de 11 dígitos, remove o 55 do início para formatar com DDD
     if (digits.startsWith("55") && digits.length > 11) {
       digits = digits.slice(2);
     }
 
-    // Limita a 11 dígitos
     if (digits.length > 11) {
       digits = digits.slice(0, 11);
     }
 
-    // Formatação progressiva
     let formatted = "";
     if (digits.length > 0) {
       formatted = "(" + digits.slice(0, 2);
@@ -66,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (digits.length >= 3) {
       formatted += ") ";
       if (digits.length > 7) {
-        // Celular 9 dígitos ou fixo 8 dígitos
         const splitPos = digits.length === 11 ? 7 : 6;
         formatted += digits.slice(2, splitPos) + "-" + digits.slice(splitPos);
       } else {
@@ -74,12 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Validação
     if (digits.length < 10) {
       return {
         formatted,
         valid: false,
-        error: "Digite o DDD + número do WhatsApp (mínimo 10 dígitos)"
+        error: "Digite o DDD + WhatsApp (mínimo 10 dígitos)"
       };
     }
 
@@ -88,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return {
         formatted,
         valid: false,
-        error: `DDD (${ddd}) não é válido no Brasil`
+        error: `DDD (${ddd}) inválido no Brasil`
       };
     }
 
@@ -98,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return {
           formatted,
           valid: false,
-          error: "Celular com 11 dígitos deve iniciar com 9 após o DDD"
+          error: "Celular de 11 dígitos deve iniciar com 9 após DDD"
         };
       }
     }
@@ -110,15 +123,15 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  contactInput.addEventListener("input", (e) => {
+  contactInput.addEventListener("input", () => {
     const rawVal = contactInput.value;
 
     if (!rawVal.trim()) {
       contactBadge.textContent = "Aguardando";
-      contactBadge.className = "type-indicator";
+      contactBadge.className = "input-badge";
       validationMsg.textContent = "";
-      validationMsg.className = "field-feedback";
-      contactInput.className = "form-input";
+      validationMsg.className = "feedback-msg";
+      contactInput.className = "contact-input";
       submitBtn.disabled = true;
       hiddenType.value = "unknown";
       hiddenNormalized.value = "";
@@ -126,48 +139,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (isEmailCandidate(rawVal)) {
-      // Modo E-mail
       contactBadge.textContent = "E-mail";
-      contactBadge.className = "type-indicator email";
+      contactBadge.className = "input-badge email";
       const res = validateEmail(rawVal);
 
       if (res.valid) {
-        validationMsg.textContent = "E-mail pronto para receber o kit";
-        validationMsg.className = "field-feedback success";
-        contactInput.className = "form-input valid-email";
+        validationMsg.textContent = "E-mail pronto";
+        validationMsg.className = "feedback-msg success";
+        contactInput.className = "contact-input valid-email";
         submitBtn.disabled = false;
         hiddenType.value = "email";
         hiddenNormalized.value = res.normalized;
       } else {
         validationMsg.textContent = res.error;
-        validationMsg.className = "field-feedback error";
-        contactInput.className = "form-input invalid-input";
+        validationMsg.className = "feedback-msg error";
+        contactInput.className = "contact-input invalid-input";
         submitBtn.disabled = true;
         hiddenType.value = "email";
         hiddenNormalized.value = "";
       }
     } else {
-      // Modo Telefone / WhatsApp
       contactBadge.textContent = "WhatsApp";
-      contactBadge.className = "type-indicator whatsapp";
+      contactBadge.className = "input-badge whatsapp";
       const res = formatAndValidatePhone(rawVal);
 
-      // Atualiza o valor formatado no input se mudou
       if (res.formatted && res.formatted !== rawVal) {
         contactInput.value = res.formatted;
       }
 
       if (res.valid) {
-        validationMsg.textContent = "WhatsApp pronto para receber o kit";
-        validationMsg.className = "field-feedback success";
-        contactInput.className = "form-input valid-phone";
+        validationMsg.textContent = "WhatsApp pronto";
+        validationMsg.className = "feedback-msg success";
+        contactInput.className = "contact-input valid-phone";
         submitBtn.disabled = false;
         hiddenType.value = "whatsapp";
         hiddenNormalized.value = res.normalized;
       } else {
         validationMsg.textContent = res.error;
-        validationMsg.className = "field-feedback error";
-        contactInput.className = "form-input invalid-input";
+        validationMsg.className = "feedback-msg error";
+        contactInput.className = "contact-input invalid-input";
         submitBtn.disabled = true;
         hiddenType.value = "whatsapp";
         hiddenNormalized.value = "";

@@ -3,70 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kit Liberado! | @jeanbraga.ia</title>
+  <title>Kit Liberado — @jeanbraga.ia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="container header-content">
+    <div class="container header-inner">
       <div class="brand">
-        <span class="brand-badge">ACESSO CONFIRMADO</span>
         <span class="brand-handle">@jeanbraga.ia</span>
+        <span class="brand-sep">/</span>
+        <span class="brand-tag">download</span>
       </div>
     </div>
   </header>
 
-  <main class="thankyou-section">
+  <main class="thankyou-wrapper">
     <div class="container">
-      <div class="thankyou-card">
-        <div class="success-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00FF94" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <div class="thankyou-box">
+        <div class="check-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         </div>
 
-        <h1 class="thankyou-title">Seu Kit Prático Está Pronto!</h1>
-        <p class="thankyou-subtitle">
-          Obrigado pelo seu interesse! O PDF com o guia completo de 7 páginas, templates sanitizados dos 4 agentes e o pipeline de Reels já pode ser baixado abaixo.
+        <h1 class="thankyou-title">Seu kit está pronto</h1>
+        <p class="thankyou-desc">
+          O PDF oficial com 7 páginas, templates sanitizados dos 4 agentes e o pipeline da fábrica de Reels já está liberado para download direto.
         </p>
 
-        <div class="download-box">
-          <a href="assets/kit-openbot-4-agentes-reels-local.pdf" download="kit-openbot-4-agentes-reels-local.pdf" class="cta-button">
-            <span>BAIXAR PDF AGORA (DIRETO)</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
+        <div class="download-action">
+          <a href="assets/kit-openbot-4-agentes-reels-local.pdf" download="kit-openbot-4-agentes-reels-local.pdf" class="download-btn">
+            Baixar PDF Agora (Direto)
           </a>
-          <p class="download-hint">Arquivo: <code>kit-openbot-4-agentes-reels-local.pdf</code> (A4, Dark-Tech)</p>
+          <p class="download-subtext">Arquivo: kit-openbot-4-agentes-reels-local.pdf (A4 Editorial)</p>
         </div>
 
-        <div class="next-steps-card">
-          <h3>Próximos Passos Recomendados:</h3>
-          <ol class="steps-list">
-            <li>Abra o PDF no seu computador para copiar facilmente os códigos e templates.</li>
-            <li>Clone os templates no seu diretório de trabalho local.</li>
-            <li>Siga o checklist da página 7 antes de ligar seus agentes no dia a dia.</li>
-            <li>Marque <strong>@jeanbraga.ia</strong> no Instagram quando subir seu primeiro agente ou vídeo!</li>
-          </ol>
-        </div>
-
-        <div class="thankyou-footer">
-          <a href="index.html" class="back-link">← Voltar para a página inicial</a>
-        </div>
+        <a href="index.html" class="return-link">← Voltar para a página inicial</a>
       </div>
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-content">
-      <p>Desenvolvido por <strong>@jeanbraga.ia</strong> • Build In Public</p>
+    <div class="container footer-inner">
+      <div><strong>@jeanbraga.ia</strong> · Build In Public</div>
     </div>
   </footer>
 
   <script>
-    // Inicia o download automaticamente após 1.5s para maior conveniência
     setTimeout(function() {
       const a = document.createElement('a');
       a.href = 'assets/kit-openbot-4-agentes-reels-local.pdf';
@@ -74,7 +60,7 @@
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-    }, 1500);
+    }, 1200);
   </script>
 </body>
 </html>
