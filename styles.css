@@ -16,6 +16,8 @@
   --accent-tech: #38BDF8;
   --accent-signal: #10B981;
   --accent-danger: #EF4444;
+  --aura-emerald: #0D8C46;
+  --aura-amber: #C9A24B;
   
   --cta-bg: #FFFFFF;
   --cta-text: #09090B;
@@ -36,11 +38,36 @@ html {
 }
 
 body {
+  position: relative;
   background-color: var(--bg-page);
   color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Subtle, wide blurred background atmosphere in profile colors (Brand Kit 1.0 @jeanbraga.ia) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(850px circle at 15% 15%, rgba(13, 140, 70, 0.14) 0%, transparent 65%),
+    radial-gradient(750px circle at 85% 22%, rgba(201, 162, 75, 0.10) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.top-nav,
+main,
+footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* Nav */
@@ -107,6 +134,40 @@ body {
   grid-template-columns: 1.05fr 0.95fr;
   gap: 48px;
   align-items: start;
+}
+
+.hero-content {
+  position: relative;
+}
+
+.hero-content::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(13, 140, 70, 0.15) 0%, transparent 70%);
+  filter: blur(130px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-preview {
+  position: relative;
+}
+
+.hero-preview::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(201, 162, 75, 0.10) 0%, transparent 70%);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .mono-eyebrow {
@@ -520,6 +581,7 @@ body {
 }
 
 .thankyou-card {
+  position: relative;
   max-width: 520px;
   margin: 0 auto;
   background: var(--bg-surface-1);
@@ -527,6 +589,20 @@ body {
   border-radius: 10px;
   padding: 36px 30px;
   text-align: center;
+}
+
+.thankyou-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(13, 140, 70, 0.14) 0%, rgba(201, 162, 75, 0.09) 45%, transparent 70%);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .t-icon {
