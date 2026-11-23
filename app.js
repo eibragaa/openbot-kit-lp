@@ -203,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (name) {
         try {
           localStorage.setItem("openbot_lead_name", name);
+          sessionStorage.setItem("openbot_lead_name", name);
         } catch (e) {}
       }
     });
