@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kit Prático: Time de 4 Agentes OpenBot & Fábrica Local de Reels | @jeanbraga.ia</title>
+  <meta name="description" content="Baixe gratuitamente o Kit Prático com templates dos 4 agentes OpenBot e o passo a passo da fábrica local de Reels em Python/FFmpeg. 100% local, zero custos de nuvem.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="brand">
+        <span class="brand-badge">BUILD IN PUBLIC</span>
+        <span class="brand-handle">@jeanbraga.ia</span>
+      </div>
+      <div class="header-pill">
+        <span class="dot"></span> 100% Local • Zero Lock-in
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <div class="badge-tag">CASO REAL • OPENBOT LOCAL</div>
+      <h1 class="hero-title">
+        Em vez de pagar <span class="text-danger">US$ 30/mês</span> em bot fechado na nuvem:<br>
+        <span class="text-gradient">Monte seu time de 4 agentes de IA</span> rodando local no seu PC antigo.
+      </h1>
+      <p class="hero-subtitle">
+        Templates sanitizados dos 4 agentes (Pessoal, Finanças, Engenharia e Conteúdo) +
+        o código da fábrica local de Reels em Python e FFmpeg. Sem mensalidades, com privacidade total e aprovação humana.
+      </p>
+
+      <!-- Lead Capture Form (Netlify Form) -->
+      <div class="form-wrapper">
+        <div class="form-header">
+          <h3>Receba o Kit Prático Completo (PDF 7 Páginas)</h3>
+          <p>Acesso instantâneo • Gratuito • Sem spam</p>
+        </div>
+
+        <form name="kit-openbot-leads" method="POST" data-netlify="true" action="/obrigado.html" id="leadForm" class="lead-form">
+          <!-- Netlify Bot Field -->
+          <input type="hidden" name="form-name" value="kit-openbot-leads" />
+          
+          <!-- Hidden Tracking Fields -->
+          <input type="hidden" name="contact_type" id="contact_type" value="unknown" />
+          <input type="hidden" name="contact_normalized" id="contact_normalized" value="" />
+          <input type="hidden" name="campaign_slug" id="campaign_slug" value="reel_2026_11_23_openbot" />
+          <input type="hidden" name="keyword" id="keyword" value="OPENBOT" />
+          <input type="hidden" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" name="utm_campaign" id="utm_campaign" value="" />
+          <input type="hidden" name="utm_content" id="utm_content" value="" />
+
+          <div class="form-group">
+            <label for="contact_input" class="form-label">Seu WhatsApp ou E-mail:</label>
+            <div class="input-container">
+              <input 
+                type="text" 
+                id="contact_input" 
+                name="contact_raw" 
+                class="form-input" 
+                placeholder="Ex: (11) 98765-4321 ou seu@email.com" 
+                required 
+                autocomplete="off"
+              />
+              <span id="contact_badge" class="type-indicator">Aguardando</span>
+            </div>
+            <p id="validation_msg" class="field-feedback"></p>
+          </div>
+
+          <button type="submit" id="submitBtn" class="cta-button" disabled>
+            <span>BAIXAR KIT PRÁTICO EM PDF</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </button>
+        </form>
+        <p class="privacy-note">Seus dados nunca serão compartilhados. Acesso liberado de imediato na página seguinte.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Inside Section -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">CONTEÚDO DO KIT</span>
+        <h2>Tudo o que você precisa para rodar hoje</h2>
+        <p>Desenvolvido para operar em hardware modesto sem depender de serviços caros na nuvem.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="feature-card">
+          <div class="card-icon cyan-border">01</div>
+          <h3>Agente Pessoal</h3>
+          <p>Triagem matinal de e-mails, agenda diária e síntese de prioridades. Alertas e lembretes acionáveis.</p>
+          <span class="card-tag">AGENTS.md Sanitizado</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon green-border">02</div>
+          <h3>Agente Finanças</h3>
+          <p>Auditoria de extratos, conciliação e deduplicação de 120s para pagamentos por aproximação no celular.</p>
+          <span class="card-tag">Apenas Leitura & Alertas</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon purple-border">03</div>
+          <h3>Agente Engenharia</h3>
+          <p>Automações em Python, testes locais, execução de scripts e versionamento semântico no Git.</p>
+          <span class="card-tag">Automação Local</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon yellow-border">04</div>
+          <h3>Fábrica Local de Reels</h3>
+          <p>Pipeline completo: roteiro JSON de 7 atos, voz neural offline, canvas Pillow, upscale Lanczos e H.264.</p>
+          <span class="card-tag">Vídeos 1080x1920</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Factory Architecture Highlights -->
+  <section class="architecture-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag">ENGENHARIA DA ESTEIRA</span>
+        <h2>Como o próprio Reel do perfil foi gerado</h2>
+      </div>
+
+      <div class="steps-flow">
+        <div class="flow-step">
+          <span class="step-num">1</span>
+          <h4>Roteiro em 7 Atos</h4>
+          <p>JSON com metadados de cenas, textos de narração e badges de contraste.</p>
+        </div>
+        <div class="flow-step">
+          <span class="step-num">2</span>
+          <h4>Voz Neural Local</h4>
+          <p>Síntese de áudio em pt-BR sincronizada por ato sem custo de API.</p>
+        </div>
+        <div class="flow-step">
+          <span class="step-num">3</span>
+          <h4>Canvas 720p</h4>
+          <p>Geração dos frames via Python Pillow com baixo consumo de memória.</p>
+        </div>
+        <div class="flow-step">
+          <span class="step-num">4</span>
+          <h4>Lanczos Upscale</h4>
+          <p>Interpolação direta para 1080x1920 cristalino com FFmpeg.</p>
+        </div>
+        <div class="flow-step">
+          <span class="step-num">5</span>
+          <h4>Contact Sheet</h4>
+          <p>Geração de folha de thumbnails para você aprovar em 1 clique.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>Desenvolvido por <strong>@jeanbraga.ia</strong> • Build In Public</p>
+      <p class="footer-meta">Kit Prático OpenBot • Versão 1.0 (Nov 2026) • Licença MIT para templates de código.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
